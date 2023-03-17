@@ -28,13 +28,9 @@ spec:
     }
   }
     stages {
-        stage('github'){
-            steps {
-                git branch: 'main', credentialsId: 'jenkins-token', url: 'https://github.com/MuhammadQadora/maven-jenkins-build-pipeline.git'
-            }
-        }
        stage('Build-image') {
             steps {
+                git branch: 'main', credentialsId: 'jenkins-token', url: 'https://github.com/MuhammadQadora/maven-jenkins-build-pipeline.git'
                 container (name: 'kaniko', shell: '/busybox/sh') {
                     sh '''
                     /kaniko/executor --context `pwd` --destination muhammadqadora/maven-app:latest
