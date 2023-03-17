@@ -8,6 +8,7 @@ pipeline {
       steps{
         sh '''
         sudo apt update -y && sudo apt install git -y
+        git --version
         '''
       }
     }
