@@ -1,13 +1,21 @@
 pipeline {
   agent {
     kubernetes{
-      inheritFrom 'kube'
-    }
+      yaml'''
+      apiVersion: v1
+      kind: Pod
+      spec:
+        containers:
+        - name: mygit
+          image: alpine/git
+      '''
   }
   stages{
     stage('git-checkout'){
       steps{
-        checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkins-token', url: 'https://github.com/MuhammadQadora/maven-jenkins-build-pipeline.git']])
+        container('mygit'){
+          checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkins-token', url: 'https://github.com/MuhammadQadora/maven-jenkins-build-pipeline.git']])
+        } 
       }
     }
   }
