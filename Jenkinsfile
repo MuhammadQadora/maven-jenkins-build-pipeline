@@ -5,6 +5,8 @@ pipeline {
 kind: Pod
 spec:
   containers:
+  - name: git
+    image: bitnami/git
   - name: kaniko
     image: gcr.io/kaniko-project/executor:debug
     imagePullPolicy: Always
@@ -28,6 +30,13 @@ spec:
     }
   }
     stages {
+       stage ('git-checkout') {
+        steps {
+          conatiner('git'){
+            git branch: 'main', credentialsId: 'jenkins-token', url: 'https://github.com/MuhammadQadora/maven-jenkins-build-pipeline.git'
+          }
+        }
+       }
        stage('Build-image') {
             steps {
                 git branch: 'main', credentialsId: 'jenkins-token', url: 'https://github.com/MuhammadQadora/maven-jenkins-build-pipeline.git'
