@@ -32,15 +32,15 @@ spec:
             steps {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkins-token', url: 'https://github.com/MuhammadQadora/maven-jenkins-build-pipeline.git']])
             }
-        stage('Build-image'){
+        }
+       stage('Build-image') {
             steps {
-                container(name: 'kaniko', shell: '/busybox/sh') {
+                container (name: 'kaniko', shell: '/busybox/sh') {
                     sh '''
                     /kaniko/executor --context `pwd` --destination muhammadqadora/maven-app:latest
                     '''
                 }
             }
-        }
         }
     }
 }
