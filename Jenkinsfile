@@ -6,7 +6,7 @@ kind: Pod
 spec:
   containers:
   - name: git
-    image: bitnami/git
+    image: docker.io/bitnami/git
   - name: kaniko
     image: gcr.io/kaniko-project/executor:debug
     imagePullPolicy: Always
