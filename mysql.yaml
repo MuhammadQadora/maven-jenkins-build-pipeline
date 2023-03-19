@@ -13,6 +13,6 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: ${imagename}
+        image: $imagename
         ports:
         - containerPort: 3306
