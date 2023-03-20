@@ -64,7 +64,7 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: $image
+        image: image
         ports:
         - containerPort: 8080
 ---
