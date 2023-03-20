@@ -85,9 +85,9 @@ metadata:
   name: secret
 type: Opaque
 data:
-  rootpass: $rootpass
-  user: $user
-  pass: $pass
+  rootpass: rootpass
+  user: username
+  pass: password
 
 ---
 apiVersion: v1
@@ -95,5 +95,5 @@ kind: ConfigMap
 metadata:
   name: myconfig
 data:
-  db: $db
+  db: database
 
