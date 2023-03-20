@@ -19,4 +19,4 @@ COPY --from=stg /myapp/target/ /java/
 
 RUN mv /java/*SNAPSHOT.jar /java/myapp.jar
 EXPOSE 8080
-CMD ["java","-jar","/java/myapp.jar"]
+CMD ["java","-Dspring.active.profile=mysql","-jar","/java/myapp.jar"]

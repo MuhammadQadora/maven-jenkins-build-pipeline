@@ -28,10 +28,17 @@ spec:
 """
     }
   }
+  environment {
+    image = "muhammadqadora/maven-proj:latest"
+    rootpass = credentials('root')
+    user = credentials('db-user')
+    pass = credentials('db-pass')
+    db = credentials('db')
+  }
   stages {
     stage('github'){
         steps{
-            checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkins-token', url: 'https://github.com/MuhammadQadora/maven-jenkins-build-pipeline.git']])
+            checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-token', url: 'https://github.com/MuhammadQadora/maven-jenkins-build-pipeline.git']])
         }
     }
     stage('Build with Kaniko') {
@@ -43,5 +50,16 @@ spec:
         }
       }
     }
+  stage('deployment'){
+    steps{
+      sh '''
+      #!/bin/bash
+      curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+      chmod +x kubectl
+      eval $(cat deployment.yaml) > deployment.yaml
+      ./kubectl apply -f deployment.yaml
+      '''
+    }
+  }
   }
 }
