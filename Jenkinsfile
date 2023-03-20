@@ -56,7 +56,11 @@ spec:
       #!/bin/bash
       curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
       chmod +x kubectl
-      eval echo $(cat deployment.yaml) > deployment.yaml
+      sed -i "s/myimage/$image/g" deployment.yaml
+      sed -i "s/username/$user/g" deployment.yaml
+      sed -i "s/rootpass/$rootpass/g" deployment.yaml            #### THIS SHOUD BE DONE USING #"envsubst". sed was used due to lack of
+      sed -i "s/password/$pass/g" deployment.yaml                #### lack of permissions
+      sed -i "s/database/$db/g" deployment.yaml
       ./kubectl apply -f deployment.yaml
       '''
     }
