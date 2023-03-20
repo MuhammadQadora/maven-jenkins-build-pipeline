@@ -56,7 +56,7 @@ spec:
       #!/bin/bash
       curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
       chmod +x kubectl
-      eval $(cat deployment.yaml) > deployment.yaml
+      eval echo $(cat deployment.yaml) > deployment.yaml
       ./kubectl apply -f deployment.yaml
       '''
     }
