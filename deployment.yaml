@@ -64,7 +64,7 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: $image
+        image: ${image}
         ports:
         - containerPort: 8080
 ---
@@ -85,9 +85,9 @@ metadata:
   name: secret
 type: Opaque
 data:
-  rootpass: $rootpass
-  user: $user
-  pass: $pass
+  rootpass: ${rootpass}
+  user: ${user}
+  pass: ${pass}
 
 ---
 apiVersion: v1
@@ -95,5 +95,5 @@ kind: ConfigMap
 metadata:
   name: myconfig
 data:
-  db: $db
+  db: ${db}
 
