@@ -29,7 +29,7 @@ spec:
     }
   }
   environment {
-    image = "muhammadqadora\/maven-proj"
+    image = "muhammadqadora\\/maven-proj"
     rootpass = credentials('root')
     user = credentials('db-user')
     pass = credentials('db-pass')
