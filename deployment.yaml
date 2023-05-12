@@ -78,6 +78,7 @@ spec:
   ports:
   - port: 8081
     targetPort: 8080
+  type: LoadBalancer
 ---
 apiVersion: v1
 kind: Secret
