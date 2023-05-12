@@ -25,7 +25,7 @@ spec:
           - name: MYSQL_DATABASE
             valueFrom:
               configMapKeyRef:
-                key: db
+                key: dbname
                 name: myconfig
           - name: MYSQL_USER
             valueFrom:
@@ -97,4 +97,5 @@ metadata:
   name: myconfig
 data:
   db: mysql-service
+  dbname: petclinic
 
